@@ -6,6 +6,9 @@ import java.time.Duration;
 
 public class OperatorTest {
 
+    /**
+     * Apply a single transformation on each element of the flux
+     */
     @Test
     void map() {
         Flux.range(1, 5)
@@ -13,6 +16,10 @@ public class OperatorTest {
                 .subscribe(System.out::println);
     }
 
+    /**
+     * If we just .map()'ed on each element in the Flux.Range(), it would simply pass a FluxRange object to the next stage.  Since we flapMap() it,
+     * each item in the _second_ flux range is also passed along to the next stage.  We are flattening out nested elements.
+     */
     @Test
     void flatMap() {
         Flux.range(1, 5)
